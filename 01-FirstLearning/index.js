@@ -3,6 +3,7 @@ const app = express();
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const port = 3000;
+const shortid = require('shortid');
 
 const adapter = new FileSync('db.json');
 const db = low(adapter);
@@ -21,32 +22,13 @@ app.get('/', function(req, res) {
     message: 'everyOne',
   });
 });
+
+const users = db.get('users').value();
+
 app.get('/users', function(req, res) {
   res.render('users/index', {
-    users: db.get('users').value(),
+    users: users,
   });
-});
-
-app.get('/users/search', function(req, res) {
-  console.log(req.query);
-  const q = req.query.q;
-  const matchedUsers = users.filter(user => {
-    return user.name.indexOf(q) !== -1;
-  });
-  res.render('users/index', {
-    users: matchedUsers,
-  });
-});
-
-app.get('/users/create', function(req, res) {
-  res.render('users/create');
-});
-
-app.post('/users/create', function(req, res) {
-  db.get('users')
-    .push(req.body)
-    .write();
-  res.redirect('/users');
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
