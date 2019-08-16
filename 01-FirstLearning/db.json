@@ -1,21 +1,9 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "truong"
-    },
-    {
-      "id": 2,
-      "name": "david"
-    },
-    {
-      "name": "truong"
-    },
-    {
-      "name": "chung"
-    },
-    {
-      "name": "phạm đông trường"
+      "name": "phạm đông trường",
+      "phone": "0901989847",
+      "id": "4wOyqLhWE"
     }
   ]
 }

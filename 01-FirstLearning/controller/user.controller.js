@@ -23,7 +23,7 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.get = (req, res) => {
-  const id = Number(req.params.id);
+  const id = req.params.id;
   const user = db
     .get('users')
     .find({ id: id })
@@ -34,8 +34,21 @@ module.exports.get = (req, res) => {
 };
 
 module.exports.postCreate = (req, res) => {
+  const reqBody = req.body;
+  reqBody.id = shortid.generate();
+  const errors = [];
+  if(!reqBody.name || !reqBody.phone ) {
+    errors.push('Name && phone is required.!')
+  }
+  if(errors.length) {
+      res.render('users/create', {
+        errors: errors,
+        values: req.body
+      });
+      return;
+  }
   db.get('users')
-    .push(req.body)
+    .push(reqBody)
     .write();
   res.redirect('/users');
 };
