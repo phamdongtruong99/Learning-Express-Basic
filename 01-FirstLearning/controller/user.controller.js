@@ -28,7 +28,7 @@ module.exports.get = (req, res) => {
     .get('users')
     .find({ id: id })
     .value();
-  res.render('/view', {
+  res.render('users/view', {
     user: user,
   });
 };

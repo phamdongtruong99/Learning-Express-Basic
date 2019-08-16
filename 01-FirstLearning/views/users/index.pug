@@ -1,12 +1,15 @@
-h1 hello USERS ne!
-a(href="users/create") New Create
+extends ../layouts/common
 
-form(action='users/search', method='GET')
-        input(type='text' name='q')
-        button Search
+block content
+    h1 hello USERS ne!
+    a(href="users/create") New Create
 
-ul
-each user in users
-        li
-            span= user.name 
-            a(href=`users/${user.id}`) View 
+    form(action='users/search', method='GET' class="d-flex")
+            input(type='text' name='q' class="form-control col-4")
+            button(class="ml-2 btn btn-danger") Search
+
+    ul
+    each user in users
+            li
+                span= user.name 
+                a(href=`users/${user.id}`) View 
