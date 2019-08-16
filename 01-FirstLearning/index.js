@@ -1,6 +1,14 @@
 const express = require('express');
 const app = express();
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
 const port = 3000;
+
+const adapter = new FileSync('db.json');
+const db = low(adapter);
+
+// Set some defaults (required if your JSON file is empty)
+db.defaults({ users: [] }).write();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -13,10 +21,9 @@ app.get('/', function(req, res) {
     message: 'everyOne',
   });
 });
-const users = [{ name: 'chung', id: 1 }, { name: 'ctien', id: 1 }];
 app.get('/users', function(req, res) {
   res.render('users/index', {
-    users: users,
+    users: db.get('users').value(),
   });
 });
 
@@ -36,7 +43,9 @@ app.get('/users/create', function(req, res) {
 });
 
 app.post('/users/create', function(req, res) {
-  users.push(req.body);
+  db.get('users')
+    .push(req.body)
+    .write();
   res.redirect('/users');
 });
 
