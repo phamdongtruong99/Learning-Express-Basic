@@ -1,16 +1,9 @@
 const express = require('express');
 const app = express();
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
+const db = require('./db');
+const userRoute = require('./routes/user.route');
+
 const port = 3000;
-const shortid = require('shortid');
-
-const adapter = new FileSync('db.json');
-const db = low(adapter);
-
-// Set some defaults (required if your JSON file is empty)
-db.defaults({ users: [] }).write();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -23,12 +16,6 @@ app.get('/', function(req, res) {
   });
 });
 
-const users = db.get('users').value();
-
-app.get('/users', function(req, res) {
-  res.render('users/index', {
-    users: users,
-  });
-});
+app.use('/users', userRoute);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
