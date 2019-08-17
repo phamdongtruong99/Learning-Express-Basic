@@ -1,7 +1,7 @@
 const express = require('express');
 const controller = require('../controller/user.controller');
 const validate = require('../validate/user.validate');
-
+const authMiddlewares = require('../middlewares/auth.middlewares');
 const router = express.Router();
 
 router.get('/', controller.index);
@@ -13,10 +13,10 @@ router.get('/cookie', (req, res, next) => {
 
 router.get('/search', controller.search);
 
-router.get('/create', controller.create); 
+router.get('/create', controller.create);
 
 router.get('/:id', controller.get);
 
-router.post('/create', validate.postCreate, controller.postCreate); // receive POST form 
+router.post('/create', validate.postCreate, controller.postCreate); // receive POST form
 
 module.exports = router;

@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser'); // module for parsing cookies
 const userRoute = require('./routes/user.route');
 const authRoute = require('./routes/auth.route');
+const authMiddlewares = require('./middlewares/auth.middlewares');
 
 const app = express();
 const db = require('./db');
@@ -21,7 +22,7 @@ app.get('/', function(req, res) {
   });
 });
 
-app.use('/users', userRoute);
+app.use('/users', authMiddlewares.requireAuth, userRoute);
 app.use('/auth', authRoute); //using authRoute/ feauture login
 
 

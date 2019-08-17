@@ -11,7 +11,7 @@ module.exports.postLogin = (req, res) => {
     .value();
 
   if (!user) {
-    res.render('auth/create', {
+    res.render('auth/login', {
       errors: ["User doesn't exist !"],
       values: req.body,
     });
@@ -19,12 +19,12 @@ module.exports.postLogin = (req, res) => {
   }
 
   if (user.password !== password) {
-    res.render('auth/create', {
+    res.render('auth/login', {
       errors: ['Wrong password'],
       values: req.body,
     });
     return;
   }
-    res.redirect('/users');
-
+  res.cookie('userId', user.id)
+  res.redirect('/users');
 };
