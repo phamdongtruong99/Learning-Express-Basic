@@ -1,0 +1,16 @@
+extends ../layouts/common
+
+block content
+   if errors
+        each error in errors
+            .mt-3.alert.alert-danger= error
+   .container
+        .d-flex.justify-content-center.pt-5
+            .card-header
+                h3.text-center Form login
+                form(action="/auth/create" method='POST')
+                    label(for="email") Email
+                    input#email.form-control(type='text' name='email', value=values ? values.email : '')
+                    label(for="password") Password
+                    input#password.form-control(type='text' name='password', value=values ? values.password : '')
+                    button.btn.btn-danger.mt-3 Login

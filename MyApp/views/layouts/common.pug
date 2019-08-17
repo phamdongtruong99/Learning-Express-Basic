@@ -1,0 +1,25 @@
+html
+    head
+        link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous')
+    style.
+       body{
+           background-color: #1d1d1d;
+           color:#fdd539;
+       }
+       .cl-yl {
+           color:#fdd539;
+       }
+       .bg-light{
+           background-color: #232323 !important;
+       }
+    body
+    nav.navbar.navbar-expand-sm.bg-light
+        ul.navbar-nav
+            li.nav-item
+            a.nav-link.cl-yl(href='/') DoShi
+            li.nav-item
+            a.nav-link(href='/users/create') Create
+            li.nav-item
+            a.nav-link(href='/users') List user
+    .container
+        block content

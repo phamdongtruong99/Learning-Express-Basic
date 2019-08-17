@@ -1,0 +1,20 @@
+extends ../layouts/common
+
+block content
+    form(action='users/search', method='GET' class="d-flex mt-3 justify-content-between ")
+        a.btn.btn-success.col-2(href="users/create") New Create
+        input(type='text' name='q' class="form-control col-4" placeholder="search...")
+        button.col-2(class="btn btn-danger") Search
+
+    table.table
+        tr
+            th Name
+            th Phone
+            th Action
+        each user in users
+            tr
+                th= user.name 
+                th= user.phone
+                th
+                    a(href=`users/${user.id}`) View 
+                <br/>

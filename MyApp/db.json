@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "name": "lucy",
+      "phone": "0898288488",
+      "id": "26ef66",
+      "email": "pdt@gmail.com",
+      "password": "123456"
+    },
+    {
+      "name": "David",
+      "phone": "0898288488",
+      "id": "26ef66xxx",
+      "email": "123",
+      "password": "123"
+    },
+    {
+      "name": "chung",
+      "phone": "0900120009",
+      "id": "da2054"
+    },
+    {
+      "name": "chung",
+      "phone": "0901989847",
+      "id": "6d73ac"
+    }
+  ]
+}
