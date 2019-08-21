@@ -1,0 +1,14 @@
+extends ../layouts/common
+
+block content
+    each product in products
+            .col-3.border
+                img.card-img-top(src=product.image)
+                .card-body
+                    p.card-text=product.name
+    nav.pt-3(aria-label='...')
+    ul.pagination
+        li.page-item.disabled
+        span.page-link Previous
+
+       
